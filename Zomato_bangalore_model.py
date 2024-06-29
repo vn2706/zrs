@@ -45,10 +45,7 @@ page_bg_img = '''
         color: #FFFFFF;
     }
     .centered {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 80vh; /* Adjust height as needed */
+        text-align: center;
     }
     </style>
     ''' 
@@ -140,7 +137,3 @@ def main():
 if __name__ == "__main__":
     main()
 
-
-
-      
-      
