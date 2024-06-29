@@ -21,7 +21,7 @@ def navigate_to_tabs():
 # Welcome page function
 def welcome_page():
     st.markdown("<h1 style='text-align: center; color: gold;'>Welcome to Zomato Recommendation System</h1>", unsafe_allow_html=True)
-    st.markdown("<h2 style='text-align: center; color: white;'>Discover the Best Food in Bangalore</h2>", unsafe_allow_html=True)
+    st.markdown("<p style='text-align: center; color: white; font-size: 18px;'>Explore the best restaurants in Bangalore with our Zomato Recommendation System. Select a tab to get started.</p>", unsafe_allow_html=True)
 
     # Centering the Explore button
     st.markdown("<div style='display: flex; justify-content: center; margin-top: 20vh;'>", unsafe_allow_html=True)
@@ -32,7 +32,6 @@ def welcome_page():
 # Function to display Zomato recommendation system with tabs
 def display_tabs():
     st.markdown("<h1 style='text-align: center; color: gold;'>Zomato Recommendation System</h1>", unsafe_allow_html=True)
-    st.markdown("<h2 style='text-align: center; color: white;'>Discover the Best Food in Bangalore</h2>", unsafe_allow_html=True)
 
     # Create tabs
     tab_selection = st.radio("Select a tab:", ["Cuisine and Location", "New Restaurants", "Feedback"])
