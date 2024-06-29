@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 import time
 
-# Function to simulate loading animation
+# Function to simulate loading animation (optional)
 def loading_animation():
     st.markdown(
         """
@@ -14,21 +14,22 @@ def loading_animation():
     )
     time.sleep(3)  # Simulate a delay for loading animation
 
-# Function to navigate to Zomato recommendation system
+# Function to navigate to Zomato recommendation system with tabs
 def navigate_to_recommendation_system():
     import_zomato_recommendation_system()
 
-# Main function for welcome page
-def main():
-    # Display welcome page
+# Welcome page function
+def welcome_page():
     st.markdown("<h1 style='text-align: center; color: gold;'>Welcome to Zomato Recommendation System</h1>", unsafe_allow_html=True)
     st.markdown("<h2 style='text-align: center; color: white;'>Discover the Best Food in Bangalore</h2>", unsafe_allow_html=True)
-    
-    # Add "Explore" button
-    if st.button("Explore"):
-        navigate_to_recommendation_system()
 
-# Function to import Zomato recommendation system
+    # Centering the Explore button
+    st.markdown("<div style='display: flex; justify-content: center;'>", unsafe_allow_html=True)
+    if st.button("Explore", key='explore_button'):
+        navigate_to_recommendation_system()
+    st.markdown("</div>", unsafe_allow_html=True)
+
+# Function to import Zomato recommendation system with tabs
 def import_zomato_recommendation_system():
     import pandas as pd
     import streamlit as st
@@ -96,13 +97,12 @@ def import_zomato_recommendation_system():
         }
         return result
 
-    # Main UI
+    # Main UI with tabs
     st.markdown("<h1 style='text-align: center; color: gold;'>Zomato Recommendation System</h1>", unsafe_allow_html=True)
     st.markdown("<h2 style='text-align: center; color: white;'>Discover the Best Food in Bangalore</h2>", unsafe_allow_html=True)
 
     # Create tabs
-    tab1, tab2, tab3 = st.tabs(["Cuisine and Location", "New Restaurants", "Feedback"])
-
+    tab1, tab2, tab3 = st.columns(3)
     with tab1:
         st.markdown("<h2 style='text-align: center; color: red;'>Find Restaurants by Cuisine and Location</h2>", unsafe_allow_html=True)
         selectedCuisine = zomatoData['cuisine'].unique()
@@ -156,8 +156,13 @@ def import_zomato_recommendation_system():
             save_feedback(name, feedback)
             st.success("Thank you for your feedback!")
 
+# Main function to run the application
+def main():
+    welcome_page()
+
 if __name__ == "__main__":
     main()
+
 
            
       
