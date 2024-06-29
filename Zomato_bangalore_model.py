@@ -44,6 +44,12 @@ page_bg_img = '''
         background-color: #1F1F1F;
         color: #FFFFFF;
     }
+    .centered {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 80vh; /* Adjust height as needed */
+    }
     </style>
     ''' 
 st.markdown(page_bg_img, unsafe_allow_html=True)
@@ -54,7 +60,7 @@ def welcome_page():
     st.markdown("<p style='text-align: justify; color: white; font-size: 18px;'>Welcome to our Zomato Recommendation System! Explore the best restaurants in Bangalore with our powerful recommendation engine. Click the Explore button below to get started.</p>", unsafe_allow_html=True)
 
     # Centering the Explore button
-    st.markdown("<div style='display: flex; justify-content: center; margin-top: 20vh;'>", unsafe_allow_html=True)
+    st.markdown("<div class='centered'>", unsafe_allow_html=True)
     if st.button("Explore", key='explore_button'):
         st.session_state.explore_clicked = True
     st.markdown("</div>", unsafe_allow_html=True)
@@ -135,3 +141,6 @@ if __name__ == "__main__":
     main()
 
 
+
+      
+      
