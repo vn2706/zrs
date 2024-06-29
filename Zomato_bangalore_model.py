@@ -14,17 +14,19 @@ def loading_animation():
     )
     time.sleep(3)  # Simulate a delay for loading animation
 
-# Main function for Zomato recommendation system
+# Function to navigate to Zomato recommendation system
+def navigate_to_recommendation_system():
+    import_zomato_recommendation_system()
+
+# Main function for welcome page
 def main():
     # Display welcome page
     st.markdown("<h1 style='text-align: center; color: gold;'>Welcome to Zomato Recommendation System</h1>", unsafe_allow_html=True)
     st.markdown("<h2 style='text-align: center; color: white;'>Discover the Best Food in Bangalore</h2>", unsafe_allow_html=True)
     
-    # Show loading animation
-    loading_animation()
-
-    # Continue to the main functionality
-    import_zomato_recommendation_system()
+    # Add "Explore" button
+    if st.button("Explore"):
+        navigate_to_recommendation_system()
 
 # Function to import Zomato recommendation system
 def import_zomato_recommendation_system():
@@ -157,4 +159,5 @@ def import_zomato_recommendation_system():
 if __name__ == "__main__":
     main()
 
-
+           
+      
