@@ -56,7 +56,7 @@ def welcome_page():
     # Centering the Explore button
     st.markdown("<div style='display: flex; justify-content: center; margin-top: 20vh;'>", unsafe_allow_html=True)
     if st.button("Explore", key='explore_button'):
-        st.experimental_rerun()
+        st.session_state.explore_clicked = True
     st.markdown("</div>", unsafe_allow_html=True)
 
 # Function to display Cuisine and Location tab content
@@ -113,10 +113,12 @@ def display_feedback():
 
 # Main function to run the application
 def main():
-    welcome_page()
+    if 'explore_clicked' not in st.session_state:
+        st.session_state.explore_clicked = False
 
-    # Check if Explore button has been clicked
-    if st.session_state.get('explore_clicked', False):
+    if not st.session_state.explore_clicked:
+        welcome_page()
+    else:
         # Create tabs
         tab_selection = st.radio("Select a tab:", ["Cuisine and Location", "New Restaurants", "Feedback"])
 
@@ -132,21 +134,4 @@ def main():
 if __name__ == "__main__":
     main()
 
-      
-   
-
-
-
- 
-           
-
-
-
-
-   
-    
-  
-   
-
-    
 
