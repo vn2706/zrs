@@ -51,7 +51,7 @@ page_bg_img = '''
         align-items: center;
         height: 80vh; /* Adjust height as needed */
     }
-    .centered .explore-button {
+    .explore-button {
         width: 200px; /* Adjust width as needed */
         margin-top: 20px; /* Add margin to separate from GIF */
     }
@@ -73,10 +73,8 @@ def welcome_page():
     st.markdown('</div>', unsafe_allow_html=True)
 
     # Centering the Explore button
-    st.markdown('<div class="centered">', unsafe_allow_html=True)
     if st.button("Explore", key='explore_button', class_='explore-button'):
         st.session_state.explore_clicked = True
-    st.markdown('</div>', unsafe_allow_html=True)
 
 # Function to display Cuisine and Location tab content
 def display_cuisine_location():
@@ -152,3 +150,8 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+   
+    
+
