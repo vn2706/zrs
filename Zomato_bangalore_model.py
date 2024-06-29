@@ -48,6 +48,17 @@ page_bg_img = '''
     ''' 
 st.markdown(page_bg_img, unsafe_allow_html=True)
 
+# Welcome page function
+def welcome_page():
+    st.markdown("<h1 style='text-align: center; color: gold;'>Welcome to Zomato Recommendation System</h1>", unsafe_allow_html=True)
+    st.markdown("<p style='text-align: center; color: white; font-size: 18px;'>Explore the best restaurants in Bangalore with our Zomato Recommendation System. Select a tab to get started.</p>", unsafe_allow_html=True)
+
+    # Centering the Explore button
+    st.markdown("<div style='display: flex; justify-content: center; margin-top: 20vh;'>", unsafe_allow_html=True)
+    if st.button("Explore", key='explore_button'):
+        st.experimental_rerun()
+    st.markdown("</div>", unsafe_allow_html=True)
+
 # Function to display Cuisine and Location tab content
 def display_cuisine_location():
     st.markdown("<h2 style='text-align: center; color: red;'>Find Restaurants by Cuisine and Location</h2>", unsafe_allow_html=True)
@@ -107,17 +118,6 @@ def display_feedback():
         else:
             save_feedback(name, feedback)
 
-# Welcome page function
-def welcome_page():
-    st.markdown("<h1 style='text-align: center; color: gold;'>Welcome to Zomato Recommendation System</h1>", unsafe_allow_html=True)
-    st.markdown("<p style='text-align: center; color: white; font-size: 18px;'>Explore the best restaurants in Bangalore with our Zomato Recommendation System. Select a tab to get started.</p>", unsafe_allow_html=True)
-
-    # Centering the Explore button
-    st.markdown("<div style='display: flex; justify-content: center; margin-top: 20vh;'>", unsafe_allow_html=True)
-    if st.button("Explore", key='explore_button'):
-        st.experimental_rerun()
-    st.markdown("</div>", unsafe_allow_html=True)
-
 # Main function to run the application
 def main():
     welcome_page()
@@ -136,3 +136,13 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+
+   
+    
+  
+   
+
+    
+
