@@ -51,7 +51,7 @@ st.markdown(page_bg_img, unsafe_allow_html=True)
 # Welcome page function
 def welcome_page():
     st.markdown("<h1 style='text-align: center; color: gold;'>Welcome to Zomato Recommendation System</h1>", unsafe_allow_html=True)
-    st.markdown("<p style='text-align: center; color: white; font-size: 18px;'>Explore the best restaurants in Bangalore with our Zomato Recommendation System. Select a tab to get started.</p>", unsafe_allow_html=True)
+    st.markdown("<p style='text-align: justify; color: white; font-size: 18px;'>Welcome to our Zomato Recommendation System! Explore the best restaurants in Bangalore with our powerful recommendation engine. Click the Explore button below to get started.</p>", unsafe_allow_html=True)
 
     # Centering the Explore button
     st.markdown("<div style='display: flex; justify-content: center; margin-top: 20vh;'>", unsafe_allow_html=True)
@@ -77,14 +77,10 @@ def display_cuisine_location():
             avg_price = round(filtered_data['price_for_one'].mean())
             best_restaurant = filtered_data.loc[filtered_data['price_for_one'].idxmin()]
 
-            st.markdown("<h3>Standard Rate:</h3>")
-            st.write(avg_price)
-            st.markdown("<h3>Restaurant Name:</h3>")
-            st.write(best_restaurant['restaurant_name'])
-            st.markdown("<h3>Timings:</h3>")
-            st.write(best_restaurant['timings'])
-            st.markdown("<h3>Surf To:</h3>")
-            st.write(best_restaurant['links'])
+            st.markdown(f"**Standard Rate:** {avg_price}")
+            st.markdown(f"**Restaurant Name:** {best_restaurant['restaurant_name']}")
+            st.markdown(f"**Timings:** {best_restaurant['timings']}")
+            st.markdown(f"**Surf To:** [{best_restaurant['links']}]({best_restaurant['links']})")
 
 # Function to display New Restaurants tab content
 def display_new_restaurants():
@@ -99,12 +95,9 @@ def display_new_restaurants():
 
     if st.button("Confirm"):
         restaurantInfo = showRestaurant[showRestaurant['restaurant_name'] == selectedRestaurant]
-        st.markdown("<h3>Estimate Price:</h3>")
-        st.write(restaurantInfo['price_for_one'].values[0])
-        st.markdown("<h3>Cuisine:</h3>")
-        st.write(restaurantInfo['cuisins'].values[0])
-        st.markdown("<h3>Navigate To:</h3>")
-        st.write(restaurantInfo['links'].values[0])
+        st.markdown(f"**Estimate Price:** {restaurantInfo['price_for_one'].values[0]}")
+        st.markdown(f"**Cuisine:** {restaurantInfo['cuisins'].values[0]}")
+        st.markdown(f"**Navigate To:** [{restaurantInfo['links'].values[0]}]({restaurantInfo['links'].values[0]})")
 
 # Function to display Feedback tab content
 def display_feedback():
@@ -121,21 +114,32 @@ def display_feedback():
 # Main function to run the application
 def main():
     welcome_page()
-    
-    # Create tabs
-    tab_selection = st.radio("Select a tab:", ["Cuisine and Location", "New Restaurants", "Feedback"])
 
-    if tab_selection == "Cuisine and Location":
-        display_cuisine_location()
+    # Check if Explore button has been clicked
+    if st.session_state.get('explore_clicked', False):
+        # Create tabs
+        tab_selection = st.radio("Select a tab:", ["Cuisine and Location", "New Restaurants", "Feedback"])
 
-    elif tab_selection == "New Restaurants":
-        display_new_restaurants()
+        if tab_selection == "Cuisine and Location":
+            display_cuisine_location()
 
-    elif tab_selection == "Feedback":
-        display_feedback()
+        elif tab_selection == "New Restaurants":
+            display_new_restaurants()
+
+        elif tab_selection == "Feedback":
+            display_feedback()
 
 if __name__ == "__main__":
     main()
+
+      
+   
+
+
+
+ 
+           
+
 
 
 
