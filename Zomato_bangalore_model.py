@@ -17,21 +17,21 @@ feedback_data = pd.DataFrame(columns=["name", "feedback"])
 def save_feedback(name, feedback):
     global feedback_data
     if not isinstance(feedback_data, pd.DataFrame):
-        print("Error: feedback_data is not a pandas DataFrame.")
+        st.error("Error: feedback_data is not a pandas DataFrame.")
         return
     try:
         feedback_data = feedback_data.append({"name": name, "feedback": feedback}, ignore_index=True)
         feedback_data.to_csv(feedback_file_path, index=False)
-        st.write("Feedback saved successfully.")
+        st.success("Feedback submitted successfully.")
     except Exception as e:
-        st.write("An error occurred while saving feedback:", e)
+        st.error(f"An error occurred while saving feedback: {e}")
 
 def load_feedback_data():
     global feedback_data
     try:
         feedback_data = pd.read_csv(feedback_file_path)
     except FileNotFoundError:
-        st.write("Feedback file not found. Creating a new DataFrame.")
+        st.warning("Feedback file not found. Creating a new DataFrame.")
         feedback_data = pd.DataFrame(columns=["name", "feedback"])
 
 # Load existing feedback data if available
@@ -48,22 +48,6 @@ page_bg_img = '''
     ''' 
 st.markdown(page_bg_img, unsafe_allow_html=True)
 
-def predict_function(cuisine, location):
-    filtered_data = zomatoData[(zomatoData['cuisine'] == cuisine) & (zomatoData['location'] == location)]
-    if filtered_data.empty:
-        return "No restaurants found for the selected cuisine and location."
-
-    avg_price = round(filtered_data['price_for_one'].mean())
-    best_restaurant = filtered_data.loc[filtered_data['price_for_one'].idxmin()]
-    
-    result = {
-        "Standard Rate": avg_price,
-        "Restaurant Name": best_restaurant['restaurant_name'],
-        "Timings": best_restaurant['timings'],
-        "Surf To": best_restaurant['links']
-    }
-    return result
-
 # Function to display Cuisine and Location tab content
 def display_cuisine_location():
     st.markdown("<h2 style='text-align: center; color: red;'>Find Restaurants by Cuisine and Location</h2>", unsafe_allow_html=True)
@@ -75,19 +59,21 @@ def display_cuisine_location():
     Location = st.selectbox("Select Location:", filterLocation)
 
     if st.button("Predict"):
-        prediction_result = predict_function(Cuisine, Location)
-        
-        if isinstance(prediction_result, dict):
-            st.markdown("<h3>Standard Rate:</h3>")
-            st.write(prediction_result["Standard Rate"])
-            st.markdown("<h3>Restaurant Name:</h3>")
-            st.write(prediction_result["Restaurant Name"])
-            st.markdown("<h3>Timings:</h3>")
-            st.write(prediction_result["Timings"])
-            st.markdown("<h3>Surf To:</h3>")
-            st.write(prediction_result["Surf To"])
+        filtered_data = filterZomatoData[filterZomatoData['location'] == Location]
+        if filtered_data.empty:
+            st.warning("No restaurants found for the selected cuisine and location.")
         else:
-            st.write(prediction_result)
+            avg_price = round(filtered_data['price_for_one'].mean())
+            best_restaurant = filtered_data.loc[filtered_data['price_for_one'].idxmin()]
+
+            st.markdown("<h3>Standard Rate:</h3>")
+            st.write(avg_price)
+            st.markdown("<h3>Restaurant Name:</h3>")
+            st.write(best_restaurant['restaurant_name'])
+            st.markdown("<h3>Timings:</h3>")
+            st.write(best_restaurant['timings'])
+            st.markdown("<h3>Surf To:</h3>")
+            st.write(best_restaurant['links'])
 
 # Function to display New Restaurants tab content
 def display_new_restaurants():
@@ -116,11 +102,26 @@ def display_feedback():
     feedback = st.text_area("Feedback")
     
     if st.button("Submit"):
-        save_feedback(name, feedback)
-        st.success("Thank you for your feedback!")
+        if name.strip() == "" or feedback.strip() == "":
+            st.warning("Please enter both name and feedback.")
+        else:
+            save_feedback(name, feedback)
+
+# Welcome page function
+def welcome_page():
+    st.markdown("<h1 style='text-align: center; color: gold;'>Welcome to Zomato Recommendation System</h1>", unsafe_allow_html=True)
+    st.markdown("<p style='text-align: center; color: white; font-size: 18px;'>Explore the best restaurants in Bangalore with our Zomato Recommendation System. Select a tab to get started.</p>", unsafe_allow_html=True)
+
+    # Centering the Explore button
+    st.markdown("<div style='display: flex; justify-content: center; margin-top: 20vh;'>", unsafe_allow_html=True)
+    if st.button("Explore", key='explore_button'):
+        st.experimental_rerun()
+    st.markdown("</div>", unsafe_allow_html=True)
 
 # Main function to run the application
 def main():
+    welcome_page()
+    
     # Create tabs
     tab_selection = st.radio("Select a tab:", ["Cuisine and Location", "New Restaurants", "Feedback"])
 
@@ -135,5 +136,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-
