@@ -45,7 +45,14 @@ page_bg_img = '''
         color: #FFFFFF;
     }
     .centered {
-        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 80vh; /* Adjust height as needed */
+        text-align: center; /* Center align text */
+    }
+    .centered .explore-button {
+        width: 200px; /* Adjust width as needed */
     }
     </style>
     ''' 
@@ -58,7 +65,7 @@ def welcome_page():
 
     # Centering the Explore button
     st.markdown("<div class='centered'>", unsafe_allow_html=True)
-    if st.button("Explore", key='explore_button'):
+    if st.button("Explore", key='explore_button', class_='explore-button'):
         st.session_state.explore_clicked = True
     st.markdown("</div>", unsafe_allow_html=True)
 
@@ -136,4 +143,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
