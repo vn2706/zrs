@@ -68,13 +68,14 @@ def welcome_page():
     st.markdown('<div class="centered">', unsafe_allow_html=True)
     st.markdown('<div style="width:100%;height:0;padding-bottom:100%;position:relative;">', unsafe_allow_html=True)
     st.markdown('<iframe src="https://giphy.com/embed/dVnewBNxCk0qWRmuU8" width="100%" height="100%" style="position:absolute" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>', unsafe_allow_html=True)
-    st.markdown('</div>', unsafe_allow_html=True)
-    st.markdown('<p><a href="https://giphy.com/stickers/ZomatoUAE-dVnewBNxCk0qWRmuU8" style="color:white;">via GIPHY</a></p>', unsafe_allow_html=True)
+    st.markdown('<p><a href="https://giphy.com/stickers/ZomatoUAE-dVnewBNxCk0qWRmuU8">via GIPHY</a></p>', unsafe_allow_html=True)
     st.markdown('</div>', unsafe_allow_html=True)
 
     # Centering the Explore button
+    st.markdown('<div>', unsafe_allow_html=True)
     if st.button("Explore", key='explore_button', class_='explore-button'):
         st.session_state.explore_clicked = True
+    st.markdown('</div>', unsafe_allow_html=True)
 
 # Function to display Cuisine and Location tab content
 def display_cuisine_location():
@@ -151,7 +152,9 @@ def main():
 if __name__ == "__main__":
     main()
 
-
+       
+   
+  
    
     
 
