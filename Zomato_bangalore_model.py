@@ -130,6 +130,9 @@ def main():
         # Create tabs
         tab_selection = st.radio("Select a tab:", ["Cuisine and Location", "New Restaurants", "Feedback"])
 
+        if st.button("Back to Welcome Page"):
+            st.session_state.explore_clicked = False
+
         if tab_selection == "Cuisine and Location":
             display_cuisine_location()
 
@@ -141,3 +144,7 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+ 
+  
+
