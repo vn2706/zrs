@@ -1,4 +1,3 @@
-
 import streamlit as st
 import pandas as pd
 
@@ -21,7 +20,8 @@ def save_feedback(name, feedback):
         st.error("Error: feedback_data is not a pandas DataFrame.")
         return
     try:
-        feedback_data = feedback_data.append({"name": name, "feedback": feedback}, ignore_index=True)
+        new_feedback = pd.DataFrame({"name": [name], "feedback": [feedback]})
+        feedback_data = pd.concat([feedback_data, new_feedback], ignore_index=True)
         feedback_data.to_csv(feedback_file_path, index=False)
         st.success("Feedback submitted successfully.")
     except Exception as e:
