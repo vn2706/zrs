@@ -1,3 +1,4 @@
+
 import streamlit as st
 import pandas as pd
 
@@ -37,23 +38,12 @@ def load_feedback_data():
 # Load existing feedback data if available
 load_feedback_data()
 
-# Set dark theme and CSS for layout
+# Set dark theme
 page_bg_img = '''
     <style>
     body {
         background-color: #1F1F1F;
         color: #FFFFFF;
-        text-align: center; /* Center align text */
-    }
-    .centered {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 80vh; /* Adjust height as needed */
-    }
-    .explore-button {
-        width: 200px; /* Adjust width as needed */
-        margin-top: 20px; /* Add margin to separate from GIF */
     }
     </style>
     ''' 
@@ -61,21 +51,14 @@ st.markdown(page_bg_img, unsafe_allow_html=True)
 
 # Welcome page function
 def welcome_page():
-    st.markdown("<h1 style='color: gold;'>Welcome to Zomato Recommendation System</h1>", unsafe_allow_html=True)
+    st.markdown("<h1 style='text-align: center; color: gold;'>Welcome to Zomato Recommendation System</h1>", unsafe_allow_html=True)
     st.markdown("<p style='text-align: justify; color: white; font-size: 18px;'>Welcome to our Zomato Recommendation System! Explore the best restaurants in Bangalore with our powerful recommendation engine. Click the Explore button below to get started.</p>", unsafe_allow_html=True)
 
-    # Displaying GIF centered
-    st.markdown('<div class="centered">', unsafe_allow_html=True)
-    st.markdown('<div style="width:100%;height:0;padding-bottom:100%;position:relative;">', unsafe_allow_html=True)
-    st.markdown('<iframe src="https://giphy.com/embed/dVnewBNxCk0qWRmuU8" width="100%" height="100%" style="position:absolute" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>', unsafe_allow_html=True)
-    st.markdown('<p><a href="https://giphy.com/stickers/ZomatoUAE-dVnewBNxCk0qWRmuU8">via GIPHY</a></p>', unsafe_allow_html=True)
-    st.markdown('</div>', unsafe_allow_html=True)
-
     # Centering the Explore button
-    st.markdown('<div>', unsafe_allow_html=True)
-    if st.button("Explore", key='explore_button', class_='explore-button'):
+    st.markdown("<div style='display: flex; justify-content: center; margin-top: 20vh;'>", unsafe_allow_html=True)
+    if st.button("Explore", key='explore_button'):
         st.session_state.explore_clicked = True
-    st.markdown('</div>', unsafe_allow_html=True)
+    st.markdown("</div>", unsafe_allow_html=True)
 
 # Function to display Cuisine and Location tab content
 def display_cuisine_location():
@@ -124,10 +107,10 @@ def display_feedback():
     feedback = st.text_area("Feedback")
     
     if st.button("Submit"):
-        if name.strip() == "" or feedback.strip() == "":
-            st.warning("Please enter both name and feedback.")
-        else:
+        if name.strip() and feedback.strip():
             save_feedback(name, feedback)
+        else:
+            st.warning("Please enter both name and feedback.")
 
 # Main function to run the application
 def main():
