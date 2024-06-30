@@ -142,8 +142,8 @@ def main():
     if not st.session_state.explore_clicked:
         welcome_page()
     else:
-        # Create tabs
-        tab_selection = st.radio("Select a tab:", ["Cuisine and Location", "New Restaurants", "Feedback"])
+        # Create tabs in the sidebar
+        tab_selection = st.sidebar.radio("Select a tab:", ["Cuisine and Location", "New Restaurants", "Feedback"])
 
         if tab_selection == "Cuisine and Location":
             display_cuisine_location()
