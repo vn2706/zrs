@@ -52,7 +52,14 @@ st.markdown(page_bg_img, unsafe_allow_html=True)
 # Welcome page function
 def welcome_page():
     st.markdown("<h1 style='text-align: center; color: gold;'>Welcome to Zomato Recommendation System</h1>", unsafe_allow_html=True)
-    st.markdown("<p style='text-align: justify; color: white; font-size: 18px;'>Welcome to our Zomato Recommendation System! Explore the best restaurants in Bangalore with our powerful recommendation engine. Click the Explore button below to get started.</p>", unsafe_allow_html=True)
+    st.markdown(
+        """
+        <p style='text-align: justify; color: white; font-size: 18px;'>
+        The Zomato Recommendation System is an intuitive platform that elevates your dining experience by helping you find the best restaurants in Bangalore. With a powerful recommendation engine, it caters to your tastes by filtering options based on cuisine, location, and real-time user feedback. Whether you're exploring new culinary delights or seeking beloved local favorites, our system guides you to the top dining spots tailored to your preferences. Dive into the vibrant food scene and make informed choices, ensuring every meal is a delightful adventure.
+        </p>
+        """, 
+        unsafe_allow_html=True
+    )
 
     # Centering the Explore button
     st.markdown("<div style='display: flex; justify-content: center; margin-top: 20vh;'>", unsafe_allow_html=True)
