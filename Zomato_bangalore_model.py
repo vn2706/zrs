@@ -61,8 +61,8 @@ def welcome_page():
         unsafe_allow_html=True
     )
 
-    # Centering the Explore button
-    st.markdown("<div style='display: flex; justify-content: center; margin-top: 20vh;'>", unsafe_allow_html=True)
+    # Centering the Explore button below the description
+    st.markdown("<div style='display: flex; justify-content: center; margin-top: 20px;'>", unsafe_allow_html=True)
     if st.button("Explore", key='explore_button'):
         st.session_state.explore_clicked = True
     st.markdown("</div>", unsafe_allow_html=True)
