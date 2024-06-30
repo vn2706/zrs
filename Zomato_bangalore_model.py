@@ -90,6 +90,11 @@ def display_cuisine_location():
             st.markdown(f"**Timings:** {best_restaurant['timings']}")
             st.markdown(f"**Surf To:** [{best_restaurant['links']}]({best_restaurant['links']})")
 
+    st.markdown("<div style='display: flex; justify-content: center; margin-top: 20px;'>", unsafe_allow_html=True)
+    if st.button("Back to Welcome Page"):
+        st.session_state.explore_clicked = False
+    st.markdown("</div>", unsafe_allow_html=True)
+
 # Function to display New Restaurants tab content
 def display_new_restaurants():
     st.markdown("<h2 style='text-align: center; color: teal;'>Newly Open Restaurants</h2>", unsafe_allow_html=True)
@@ -107,6 +112,11 @@ def display_new_restaurants():
         st.markdown(f"**Cuisine:** {restaurantInfo['cuisins'].values[0]}")
         st.markdown(f"**Navigate To:** [{restaurantInfo['links'].values[0]}]({restaurantInfo['links'].values[0]})")
 
+    st.markdown("<div style='display: flex; justify-content: center; margin-top: 20px;'>", unsafe_allow_html=True)
+    if st.button("Back to Welcome Page", key='back_button_new'):
+        st.session_state.explore_clicked = False
+    st.markdown("</div>", unsafe_allow_html=True)
+
 # Function to display Feedback tab content
 def display_feedback():
     st.markdown("<h2 style='text-align: center; color: red;'>Feedback</h2>", unsafe_allow_html=True)
@@ -119,6 +129,11 @@ def display_feedback():
         else:
             st.warning("Please enter both name and feedback.")
 
+    st.markdown("<div style='display: flex; justify-content: center; margin-top: 20px;'>", unsafe_allow_html=True)
+    if st.button("Back to Welcome Page", key='back_button_feedback'):
+        st.session_state.explore_clicked = False
+    st.markdown("</div>", unsafe_allow_html=True)
+
 # Main function to run the application
 def main():
     if 'explore_clicked' not in st.session_state:
@@ -129,9 +144,6 @@ def main():
     else:
         # Create tabs
         tab_selection = st.radio("Select a tab:", ["Cuisine and Location", "New Restaurants", "Feedback"])
-
-        if st.button("Back to Welcome Page"):
-            st.session_state.explore_clicked = False
 
         if tab_selection == "Cuisine and Location":
             display_cuisine_location()
@@ -144,7 +156,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
- 
-  
-
