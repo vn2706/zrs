@@ -87,25 +87,6 @@ This project aspires to revolutionize the way users discover and choose dining o
     
 <br>
 
-
-
-
-
-# FINDINGS
-
-![image](https://github.com/anishkatoch/Zomato-Recommendation-Model/assets/130006013/750bdc75-e478-4c2b-839b-a24aff8f4dd0)
-
-
-
-# FEEDBACK
-
-![image](https://github.com/anishkatoch/Zomato-Recommendation-Model/assets/130006013/75b0c89e-c754-4c18-ac11-5544a0b50d34)
-
-
-
-
-
-
 # ANALYSIS
 
 
